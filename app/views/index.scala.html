@@ -1,0 +1,28 @@
+@(title: String)
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <title>@title</title>
+    <link rel="shortcut icon" type="image/png" href="@routes.Assets.versioned("images/favicon.png")">
+    </head>
+    <body>
+        <h2>プッシュ通知テスト</h2>
+
+        <p id="change-text">
+            サーバーからpushが来るまでお待ち下さい。
+        </p>
+        <script>
+            var cometMessage = function(event) {
+              if(!event) return false;
+              var count = event.count;
+              if (count >= 1) {
+                var changeText = document.getElementById('change-text');
+                changeText.textContent = count + "Times push comes from the server.";
+              }
+            }
+        </script>
+        <iframe style="display: none;" src="/count"></iframe>
+</body>
+</html>
